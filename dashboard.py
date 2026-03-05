@@ -91,7 +91,7 @@ def update_history(data):
     
     if os.path.exists(HISTORY_FILE):
         df = pd.read_csv(HISTORY_FILE)
-        # 确保列顺序一致，如果 CSV 里有旧的列(如Gas)会自动被忽略
+        # 确保列顺序一致
         df = df.reindex(columns=new_row.keys())
         df = df[df["日期"] != today]
     else:
@@ -124,14 +124,13 @@ def generate_html(current_data, history_df):
             .card {{ background:white; padding:15px; border-radius:10px; margin-bottom:20px; box-shadow:0 2px 5px rgba(0,0,0,0.05); }}
             h2 {{ font-size:1.1em; color:#444; border-left:4px solid #0066cc; padding-left:10px; margin:0 0 15px 0; }}
             
-            /* 通用表格样式 */
+            /* 表格通用 */
             table {{ width:100%; border-collapse:collapse; white-space:nowrap; font-size:0.9em; }}
             th {{ background:#333; color:white; padding:10px; text-align:center; }}
             td {{ padding:8px; text-align:center; border-bottom:1px solid #eee; }}
             tr:nth-child(even) {{ background-color:#f9f9f9; }}
             
             .trend {{ font-size:0.7em; margin-left:3px; }}
-            .value {{ font-weight:bold; color:#333; }}
         </style>
     </head>
     <body>
