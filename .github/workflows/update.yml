@@ -1,0 +1,26 @@
+name: Daily Archive
+
+on:
+  schedule:
+    - cron: '0 10 * * *'  # 每天北京时间 18:00 (UTC 10:00)
+  workflow_dispatch:      # 允许手动点按钮
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    - run: pip install yfinance pandas requests pytz
+    - run: python dashboard.py
+    - run: |
+        git config --global user.name 'Archivist'
+        git config --global user.email 'bot@github.com'
+        git add index.html history.csv
+        git commit -m "Auto-archive" || exit 0
+        git push
