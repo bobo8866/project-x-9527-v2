@@ -6,20 +6,36 @@
         <meta charset="UTF-8">
         <style>
             body { font-family: sans-serif; margin:0; padding:20px; background:#f4f4f4; }
-            .container { max-width: 1200px; margin:0 auto; background:white; padding:20px; border-radius:10px; }
-            h1 { text-align:center; }
-            .history-table { width:100%; border-collapse:collapse; margin-top:20px; }
-            .history-table th { background:#333; color:white; padding:10px; }
-            .history-table td { padding:8px; text-align:center; border-bottom:1px solid #ddd; }
+            .container { max-width: 1200px; margin:0 auto; }
+            h1, h2 { text-align:center; color:#333; }
+            .time { text-align:center; color:#888; font-size:0.9em; }
+            .card { background:white; padding:20px; border-radius:10px; margin-bottom:20px; box-shadow:0 2px 5px rgba(0,0,0,0.05); }
+            
+            /* 历史表格 */
+            .history-table { width:100%; border-collapse:collapse; margin-top:10px; font-size:0.9em; }
+            .history-table th { background:#333; color:white; padding:8px; }
+            .history-table td { padding:6px; text-align:center; border-bottom:1px solid #ddd; }
             .history-table tr:nth-child(even) { background-color:#f9f9f9; }
+            
+            /* 战术网格 */
+            .grid-box { display:grid; grid-template-columns:repeat(auto-fill, minmax(140px, 1fr)); gap:10px; }
+            .grid-item { background:#fafafa; padding:10px; text-align:center; border:1px solid #eee; border-radius:8px; }
+            .grid-label { display:block; font-size:0.8em; color:#888; }
+            .grid-value { font-weight:bold; color:#333; }
+            
+            .btn { background:#eef; color:#0066cc; padding:2px 8px; border-radius:4px; text-decoration:none; font-size:0.9em; }
+            .val-link { color:#333; text-decoration:none; border-bottom:1px dotted #ccc; }
         </style>
     </head>
     <body>
         <div class="container">
-            <h1>📂 每日金融档案 (18:00)</h1>
-            <div style="text-align:center; color:#888;">最后归档: 2026-03-05 20:17</div>
-            <div style="overflow-x:auto;">
-                <table class="dataframe history-table">
+            <h1>📂 每日金融档案</h1>
+            <div class="time">最后归档: 2026-03-05 23:48</div>
+            
+            <div class="card">
+                <h2>📜 历史数据 (Daily Log)</h2>
+                <div style="overflow-x:auto;">
+                    <table class="dataframe history-table">
   <thead>
     <tr style="text-align: right;">
       <th>日期</th>
@@ -41,22 +57,48 @@
   <tbody>
     <tr>
       <td>2026-03-05</td>
-      <td>4.08%</td>
-      <td>98.96</td>
-      <td>21.48</td>
-      <td>80.40</td>
-      <td>5180.10</td>
-      <td>5.83</td>
-      <td>57.4%</td>
-      <td>$265.6B</td>
+      <td>4.13%</td>
+      <td>99.31</td>
+      <td>23.26</td>
+      <td>80.28</td>
+      <td>5095.00</td>
+      <td>5.82</td>
+      <td>57.2%</td>
+      <td>$265.3B</td>
       <td>$887612B</td>
       <td>22</td>
-      <td>N/A</td>
-      <td>6.90</td>
-      <td>N/A</td>
+      <td></td>
+      <td>6.91</td>
+      <td></td>
     </tr>
   </tbody>
 </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>⚔️ 战术面板 (Current Status)</h2>
+                <div class="grid-box">
+                    <div class="grid-item"><span class="grid-label">TGA余额</span>$887612B</div>
+                    <div class="grid-item"><span class="grid-label">恐慌指数</span>22</div>
+                    
+                    <!-- 修复 Gas 显示 -->
+                    <div class="grid-item"><span class="grid-label">Gas Fee</span><a href='https://mct.xyz/gasnow' target='_blank' class='btn'>查看</a></div>
+                    
+                    <!-- 修复 AH 显示 (加到面板里) -->
+                    <div class="grid-item"><span class="grid-label">AH溢价</span><a href='https://quote.eastmoney.com/gb/zsHSAHP.html' target='_blank' class='btn'>查看</a></div>
+
+                    <div class="grid-item"><span class="grid-label">资金费率</span><a href='https://www.coinglass.com/zh/FundingRate' target='_blank' class='btn'>查看</a></div>
+                    <div class="grid-item"><span class="grid-label">北向资金</span><a href='https://data.eastmoney.com/hsgt/index.html' target='_blank' class='btn'>查看</a></div>
+                    <div class="grid-item"><span class="grid-label">贝莱德BTC</span><a href='https://www.coinglass.com/zh/bitcoin-etf' target='_blank' class='btn'>查看</a></div>
+                    <div class="grid-item"><span class="grid-label">贝莱德ETH</span><a href='https://www.coinglass.com/zh/eth-etf' target='_blank' class='btn'>查看</a></div>
+                    <div class="grid-item"><span class="grid-label">短手成本</span><a href='https://www.coinglass.com/pro/i/short-term-holder-price' target='_blank' class='btn'>查看</a></div>
+                    <div class="grid-item"><span class="grid-label">稳定币流向</span><a href='https://cryptoquant.com/asset/stablecoin/chart/exchange-flows/exchange-netflow-total?exchange=all_exchange&window=DAY&sma=0&ema=0&priceScale=log&metricScale=linear&chartStyle=column' target='_blank' class='btn'>查看</a></div>
+                    <div class="grid-item"><span class="grid-label">MMFI宽度</span><a href='https://www.tradingview.com/symbols/MMFI/' target='_blank' class='btn'>查看</a></div>
+                    <div class="grid-item"><span class="grid-label">MVRV逃顶</span><a href='https://www.bitcoinmagazinepro.com/charts/mvrv-zscore/' target='_blank' class='btn'>查看</a></div>
+                    <div class="grid-item"><span class="grid-label">Ahr999抄底</span><a href='https://9992100.xyz/' target='_blank' class='btn'>查看</a></div>
+                    <div class="grid-item"><span class="grid-label">披萨指数</span><a href='https://www.pizzint.watch/' target='_blank' class='btn'>查看</a></div>
+                </div>
             </div>
         </div>
     </body>
